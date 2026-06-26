@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  background: #fffdf3;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-rounded), system-ui, sans-serif;
+  color: #17221a;
+  background:
+    radial-gradient(circle at 82% 4%, rgba(255, 210, 26, 0.24), transparent 28%),
+    radial-gradient(circle at 8% 18%, rgba(230, 243, 232, 0.95), transparent 24%),
+    #fffdf3;
+}
+
+::selection {
+  color: #17221a;
+  background: rgba(255, 210, 26, 0.55);
+}
+
+h1 {
+  font-family: var(--font-display), var(--font-rounded), sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.section-anchor {
+  scroll-margin-top: 120px;
+}
+
+.hero-blob {
+  clip-path: path(
+    "M0,0 H1000 V244 C920,220 900,280 790,270 C680,260 670,230 600,245 C515,263 500,200 450,188 C390,174 410,96 315,88 C205,78 242,0 115,0 H0 Z"
+  );
+}
+
+.footer-wave {
+  clip-path: polygon(0 22%, 7% 8%, 13% 28%, 24% 17%, 36% 14%, 47% 25%, 56% 31%, 64% 12%, 75% 26%, 84% 34%, 93% 18%, 100% 20%, 100% 100%, 0 100%);
+}
+
+.doodle-dash {
+  stroke-dasharray: 9 11;
+  animation: dash 18s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -220;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
