@@ -1,5 +1,6 @@
-import { BookOpenCheck, Camera, Clock3, HeartHandshake, MonitorPlay, ShieldCheck } from "lucide-react";
+import { BookOpenCheck, Camera, CheckCircle2, Clock3, MonitorPlay } from "lucide-react";
 import { HorariosAip } from "./HorariosAip";
+import { NormasAip } from "./NormasAip";
 
 const sections = [
   {
@@ -7,7 +8,7 @@ const sections = [
     title: "Horarios",
     icon: Clock3,
     text: "Disponibilidad organizada por bloques para clases, talleres, investigación y producción multimedia.",
-    items: ["Lunes a viernes: 8:00 a.m. - 4:00 p.m.", "Bloques de 45 y 90 minutos", "Prioridad para proyectos colaborativos"]
+    items: ["Turno mañana: 07:15 AM - 12:45 PM", "Turno tarde: 01:05 PM - 06:35 PM", "Reservas actualizadas por API"]
   },
   {
     id: "recursos",
@@ -15,13 +16,6 @@ const sections = [
     icon: BookOpenCheck,
     text: "Materiales listos para docentes y estudiantes: guías, plantillas, rúbricas y enlaces de apoyo.",
     items: ["Guías de video y presentaciones", "Plantillas para proyectos STEM", "Banco de herramientas digitales"]
-  },
-  {
-    id: "normas",
-    title: "Normas",
-    icon: ShieldCheck,
-    text: "Un aula cuidada permite que todos aprendan mejor, creen con confianza y trabajen en equipo.",
-    items: ["Usar equipos con responsabilidad", "Respetar turnos y espacios", "Reportar incidencias al docente"]
   },
   {
     id: "galeria",
@@ -36,6 +30,7 @@ export function InfoSections() {
   return (
     <section id="noticias-detalle" className="px-5 py-8 md:px-10 lg:px-12">
       <HorariosAip />
+      <NormasAip />
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {sections.map(({ id, title, icon: Icon, text, items }) => (
           <article key={id} id={id} className="section-anchor rounded-2xl border border-line bg-white p-6 shadow-card">
@@ -49,7 +44,7 @@ export function InfoSections() {
             <ul className="mt-5 grid gap-2 text-sm font-bold text-muted">
               {items.map((item) => (
                 <li key={item} className="flex gap-2">
-                  <HeartHandshake className="mt-0.5 h-4 w-4 shrink-0 text-aip-green" />
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-aip-green" />
                   {item}
                 </li>
               ))}

@@ -70,9 +70,25 @@ button {
   animation: dash 18s linear infinite;
 }
 
+.norm-hero-image {
+  animation: norm-image-enter 180ms ease-out;
+}
+
 @keyframes dash {
   to {
     stroke-dashoffset: -220;
+  }
+}
+
+@keyframes norm-image-enter {
+  from {
+    opacity: 0.82;
+    transform: scale(1.012);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 

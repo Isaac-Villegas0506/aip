@@ -1,39 +1,9 @@
 "use client";
 
+import { filters, projects, type ProjectTone, type ProjectVisual as ProjectVisualName } from "@/lib/projects";
 import { CirclePlay, Lightbulb, Rocket, Smartphone, Star, Tag } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-
-const filters = ["Todos", "1° de Secundaria", "2° de Secundaria", "3° de Secundaria", "4° de Secundaria", "5° de Secundaria"];
-
-const projects = [
-  {
-    grade: "3° de Secundaria",
-    title: "Robot Seguidor de Línea",
-    description:
-      "Los estudiantes diseñaron y construyeron un robot capaz de seguir una línea utilizando sensores y programación. Este proyecto permitió aplicar conceptos de electrónica, programación y trabajo colaborativo.",
-    tags: ["Robótica", "Programación", "Electrónica"],
-    tone: "green",
-    visual: "robot"
-  },
-  {
-    grade: "4° de Secundaria",
-    title: "App Escolar: Conectando Ideas",
-    description:
-      "Aplicación móvil creada para mejorar la comunicación y organización en nuestra institución. Los estudiantes diseñaron la interfaz y desarrollaron las funcionalidades principales.",
-    tags: ["Desarrollo Mobile", "Diseño UI/UX", "Innovación"],
-    tone: "yellow",
-    visual: "app"
-  },
-  {
-    grade: "5° de Secundaria",
-    title: "Impresión 3D: Diseñando el Futuro",
-    description:
-      "Proyecto donde los estudiantes diseñaron e imprimieron en 3D diferentes objetos útiles para la comunidad educativa, fomentando la creatividad y el aprendizaje práctico.",
-    tags: ["Impresión 3D", "Diseño", "Fabricación Digital"],
-    tone: "red",
-    visual: "print"
-  }
-] as const;
 
 export function ProjectsShowcase() {
   const [activeFilter, setActiveFilter] = useState(() => {
@@ -113,9 +83,10 @@ export function ProjectsShowcase() {
 
         <div className="mt-8 grid gap-5" aria-live="polite">
           {visibleProjects.map((project) => (
-            <article
-              key={project.title}
-              className="grid overflow-hidden rounded-2xl border border-line bg-white shadow-card transition duration-200 ease-out hover:-translate-y-1 hover:shadow-soft md:grid-cols-[43%_57%]"
+            <Link
+              key={project.slug}
+              href={`/proyectos/${project.slug}`}
+              className="group grid overflow-hidden rounded-2xl border border-line bg-white shadow-card transition duration-200 ease-out hover:-translate-y-1 hover:shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aip-green focus-visible:ring-offset-4 md:grid-cols-[43%_57%]"
             >
               <ProjectVisual visual={project.visual} tone={project.tone} />
               <div className="p-6 md:p-8">
@@ -123,7 +94,7 @@ export function ProjectsShowcase() {
                   {project.grade}
                 </span>
                 <h3 className="mt-4 text-3xl font-black leading-tight text-aip-greenDark">{project.title}</h3>
-                <p className="mt-3 text-base font-semibold leading-relaxed text-ink">{project.description}</p>
+                <p className="mt-3 text-base font-semibold leading-relaxed text-ink">{project.shortDescription}</p>
                 <div className="mt-5 flex flex-wrap gap-3">
                   {project.tags.map((tag) => (
                     <span key={tag} className={`inline-flex items-center gap-2 rounded-md border px-3 py-1 text-sm font-extrabold ${badgeClass(project.tone)}`}>
@@ -132,8 +103,12 @@ export function ProjectsShowcase() {
                     </span>
                   ))}
                 </div>
+                <span className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-lg bg-aip-red px-5 text-sm font-extrabold text-white shadow-card transition group-hover:bg-aip-redDark">
+                  Ver proyecto
+                  <Rocket className="h-4 w-4" />
+                </span>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </div>
@@ -141,7 +116,7 @@ export function ProjectsShowcase() {
   );
 }
 
-function ProjectVisual({ visual, tone }: { visual: "robot" | "app" | "print"; tone: "green" | "yellow" | "red" }) {
+function ProjectVisual({ visual, tone }: { visual: ProjectVisualName; tone: ProjectTone }) {
   const color = tone === "red" ? "bg-aip-red" : tone === "yellow" ? "bg-aip-yellow" : "bg-aip-green";
 
   return (
@@ -150,13 +125,9 @@ function ProjectVisual({ visual, tone }: { visual: "robot" | "app" | "print"; to
       <div className="absolute inset-4 overflow-hidden rounded-lg bg-gradient-to-br from-aip-greenSoft via-aip-yellowSoft to-white">
         {visual === "app" ? <AppMockup /> : visual === "print" ? <PrinterMockup /> : <RobotMockup />}
         <div className="absolute inset-0 bg-black/10" />
-        <button
-          type="button"
-          aria-label="Reproducir video del proyecto"
-          className="absolute left-1/2 top-1/2 grid h-20 w-20 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-4 border-white bg-aip-greenDark/70 text-white shadow-soft transition duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aip-yellow"
-        >
+        <span className="absolute left-1/2 top-1/2 grid h-20 w-20 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-4 border-white bg-aip-greenDark/70 text-white shadow-soft transition duration-200 group-hover:scale-105">
           <CirclePlay className="h-14 w-14" />
-        </button>
+        </span>
         <div className="absolute bottom-3 left-4 right-4 flex items-center gap-3 text-xs font-bold text-white">
           <span>0:00 / {visual === "app" ? "1:35" : visual === "print" ? "2:10" : "1:45"}</span>
           <span className="h-1 flex-1 rounded-full bg-white/80" />
@@ -209,7 +180,7 @@ function PrinterMockup() {
   );
 }
 
-function badgeClass(tone: "green" | "yellow" | "red") {
+function badgeClass(tone: ProjectTone) {
   if (tone === "red") {
     return "border-aip-red bg-red-50 text-aip-red";
   }

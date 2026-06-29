@@ -9,7 +9,7 @@ export function Hero() {
       <DecorativeDoodles />
 
       <div className="relative grid min-h-[330px] items-center gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="max-w-xl py-6 md:py-8">
+        <div className="relative z-10 max-w-xl py-6 md:py-8">
           <h1 className="font-display text-[4rem] font-normal leading-[1.05] tracking-normal text-aip-greenDark sm:text-8xl lg:text-9xl">
             Aula AIP
           </h1>

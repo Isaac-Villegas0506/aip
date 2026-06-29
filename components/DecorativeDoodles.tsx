@@ -29,7 +29,7 @@ export function DecorativeDoodles({ variant = "hero" }: DecorativeDoodlesProps) 
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
       <svg
-        className="absolute left-2 top-28 h-20 w-28 text-aip-green"
+        className="absolute left-2 top-28 hidden h-20 w-28 text-aip-green md:block"
         viewBox="0 0 130 80"
         fill="none"
       >
@@ -39,7 +39,7 @@ export function DecorativeDoodles({ variant = "hero" }: DecorativeDoodlesProps) 
       </svg>
 
       <svg
-        className="doodle-dash absolute left-[-22px] top-56 h-32 w-32 text-aip-yellow"
+        className="doodle-dash absolute left-[-22px] top-56 hidden h-32 w-32 text-aip-yellow md:block"
         viewBox="0 0 120 120"
         fill="none"
       >
@@ -52,7 +52,7 @@ export function DecorativeDoodles({ variant = "hero" }: DecorativeDoodlesProps) 
       </svg>
 
       <svg
-        className="absolute left-[29%] top-20 h-16 w-24 rotate-[-18deg] text-aip-greenDark"
+        className="absolute left-[29%] top-20 hidden h-16 w-24 rotate-[-18deg] text-aip-greenDark md:block"
         viewBox="0 0 120 80"
         fill="none"
       >
