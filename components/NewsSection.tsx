@@ -1,9 +1,9 @@
 import { ArrowRight, Bell, CalendarDays } from "lucide-react";
 
 const news = [
-  ["Taller Robótica Educativa", "16 de mayo, 2024"],
-  ["Nuevo repositorio de guías", "8 de mayo, 2024"],
-  ["Concurso: STEM Innovar 2024", "2 de mayo, 2024"]
+  ["Taller Robótica Educativa", "1 de julio, 2026"],
+  ["Nuevo repositorio de guías", "28 de junio, 2026"],
+  ["Concurso: STEM Innovar 2026", "25 de junio, 2026"]
 ] as const;
 
 export function NewsSection() {
