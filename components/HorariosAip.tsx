@@ -48,8 +48,6 @@ type SlotStatus = {
 };
 
 const WEEK_DAY_LABELS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"];
-const TEACHER_NAME = "JOHN VALENZUELA TORRES";
-const TEACHER_PHONE = "920 596 194";
 
 const MORNING_SLOTS: SlotDefinition[] = [
   { hora: 1, name: "1RA HORA", inicio: "07:15", fin: "08:00", label: "07:15 AM - 08:00 AM" },
@@ -79,6 +77,10 @@ export function HorariosAip() {
 
   const todayIso = useMemo(() => toIsoDate(new Date()), []);
   const slots = selectedTurno === "manana" ? MORNING_SLOTS : AFTERNOON_SLOTS;
+
+  const teacherInfo = selectedTurno === "manana" 
+    ? { name: "JOHN VALENZUELA TORRES", phone: "920 596 194" }
+    : { name: "DOCENTE TURNO TARDE", phone: "--- --- ---" };
 
   const weekDays = useMemo(() => {
     const today = new Date();
@@ -212,12 +214,12 @@ export function HorariosAip() {
                 <UserRound className="size-8" />
               </span>
               <span>
-                <strong className="block text-sm font-black text-ink">{TEACHER_NAME}</strong>
+                <strong className="block text-sm font-black text-ink">{teacherInfo.name}</strong>
                 <span className="block text-xs font-bold text-muted">Responsable del Aula AIP</span>
               </span>
             </div>
             <div className="mt-4 grid gap-2 text-sm font-bold text-muted">
-              <span className="flex items-center gap-2"><Phone className="size-4 text-aip-green" /> {TEACHER_PHONE}</span>
+              <span className="flex items-center gap-2"><Phone className="size-4 text-aip-green" /> {teacherInfo.phone}</span>
               <span className="flex items-center gap-2"><Mail className="size-4 text-aip-green" /> Plataforma AIP</span>
             </div>
           </div>
@@ -225,9 +227,9 @@ export function HorariosAip() {
           <div className="mt-auto pt-6">
             <h4 className="text-sm font-black text-ink">Leyenda</h4>
             <div className="mt-3 grid gap-3 text-sm font-bold text-muted">
-              <Legend dot="bg-aip-green" label="Disponible" text="El aula está libre para reservar." />
-              <Legend dot="bg-aip-yellow" label="Reservado" text="Horario reservado." />
-              <Legend dot="bg-aip-red" label="Feriado" text="No hay clases en este horario." />
+              <Legend dot="bg-emerald-500" label="Disponible" text="El aula está libre para reservar." />
+              <Legend dot="bg-amber-500" label="Reservado" text="Horario reservado." />
+              <Legend dot="bg-red-500" label="Feriado" text="No hay clases en este horario." />
             </div>
           </div>
         </aside>
@@ -253,11 +255,11 @@ function SegmentedButton({ active, onClick, children }: { active: boolean; onCli
 function SlotBadge({ status }: { status: SlotStatus }) {
   const dotClass =
     status.label === "Feriado"
-      ? "bg-aip-red"
+      ? "bg-red-500"
       : status.estado === "disponible"
-        ? "bg-aip-green"
+        ? "bg-emerald-500"
         : status.estado === "reservado"
-          ? "bg-aip-yellow"
+          ? "bg-amber-500"
           : "bg-gray-300";
 
   return (

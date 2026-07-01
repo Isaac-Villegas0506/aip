@@ -25,7 +25,7 @@ export function Footer() {
             </span>
             <span>
               <strong className="block text-2xl font-black text-white">Aula AIP</strong>
-              <span className="text-sm font-bold text-white/90">Aula de Innovación Pedagógica</span>
+              <span className="text-sm font-black text-white">Aula de Innovación Pedagógica</span>
             </span>
           </div>
           <p className="mt-5 max-w-[12rem] text-sm font-black leading-relaxed text-white">Crear hoy, mejorar mañana.</p>
@@ -38,16 +38,16 @@ export function Footer() {
 
         <div>
           <h2 className="text-sm font-black text-white">Enlaces rápidos</h2>
-          <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2 text-sm font-bold text-white/90">
+          <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2 text-sm font-black text-white">
             {quickLinks.map(([label, href]) => (
-              <a key={href} href={href} className="transition hover:translate-x-1 hover:text-white">{label}</a>
+              <a key={href} href={href} className="transition hover:translate-x-1 hover:text-white/80">{label}</a>
             ))}
           </div>
         </div>
 
         <div>
           <h2 className="text-sm font-black text-white">Contacto</h2>
-          <div className="mt-4 grid gap-2 text-sm font-bold text-white/90">
+          <div className="mt-4 grid gap-2 text-sm font-black text-white">
             <span className="flex items-center gap-2"><Phone className="size-4 text-white" /> 920 596 194</span>
             <span className="flex items-center gap-2"><UserRound className="size-4 text-white" /> JOHN VALENZUELA TORRES</span>
             <span className="flex items-center gap-2"><Mail className="size-4 text-white" /> Plataforma informativa Aula AIP</span>
@@ -56,7 +56,7 @@ export function Footer() {
 
         <div>
           <h2 className="text-sm font-black text-white">Ubicación</h2>
-          <p className="mt-4 flex gap-2 text-sm font-bold leading-relaxed text-white/90">
+          <p className="mt-4 flex gap-2 text-sm font-black leading-relaxed text-white">
             <MapPin className="mt-0.5 size-4 shrink-0 text-white" />
             <span>I.E. Nicolás La Torre García<br />Av. Sáenz Peña 1815<br />José Leonardo Ortiz, Chiclayo</span>
           </p>
