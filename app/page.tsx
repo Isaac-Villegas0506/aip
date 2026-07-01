@@ -1,11 +1,12 @@
+import { AboutInstitution } from "@/components/AboutInstitution";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { InfoSections } from "@/components/InfoSections";
 import { NewsSection } from "@/components/NewsSection";
+import { OfficialLinks } from "@/components/OfficialLinks";
 import { ProjectSection } from "@/components/ProjectSection";
 import { ProjectsShowcase } from "@/components/ProjectsShowcase";
-import { TeacherCard } from "@/components/TeacherCard";
 
 export default function Home() {
   return (
@@ -17,16 +18,18 @@ export default function Home() {
         Saltar al contenido
       </a>
       <Header />
-      <div className="mx-auto max-w-[1500px] overflow-hidden">
+      <div className="overflow-hidden pt-[90px] md:pt-[104px]">
         <Hero />
-        <section className="grid gap-4 md:gap-6 px-5 py-6 md:px-10 lg:grid-cols-3 lg:px-12 mt-4">
+
+        <section className="aip-shell grid gap-5 py-8 lg:grid-cols-2">
           <NewsSection />
           <ProjectSection />
-          <TeacherCard />
         </section>
 
         <ProjectsShowcase />
         <InfoSections />
+        <OfficialLinks />
+        <AboutInstitution />
         <Footer />
       </div>
     </main>

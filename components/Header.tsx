@@ -26,16 +26,13 @@ export function Header() {
     let frame = 0;
 
     const updateActiveSection = () => {
-      setScrolled(window.scrollY > 8);
+      setScrolled(window.scrollY > 12);
+      const scrollPosition = window.scrollY + 130;
 
-      const scrollPosition = window.scrollY + 150;
       const current = navItems.reduce(
         (active, [, href]) => {
           const section = document.querySelector(href);
-
-          if (!section) {
-            return active;
-          }
+          if (!section) return active;
 
           const sectionTop = section.getBoundingClientRect().top + window.scrollY;
           return sectionTop <= scrollPosition && sectionTop >= active.top
@@ -64,54 +61,55 @@ export function Header() {
     };
   }, []);
 
-  const elevated = scrolled || open;
-
   return (
     <header
-      className={`sticky top-0 z-50 transition-[background-color,padding] duration-300 ease-out ${
-        elevated ? "bg-transparent px-3 py-2.5 md:px-8 md:py-4" : "bg-cream/95 px-0 py-0"
+      className={`fixed left-0 right-0 top-0 z-50 w-full transition-all duration-300 ${
+        scrolled || open ? "px-3 pt-3 md:px-5" : "px-0 pt-0"
       }`}
     >
       <div
-        className={`relative mx-auto flex max-w-[1500px] items-center justify-between gap-4 transition-all duration-300 ease-out ${
-          elevated
-            ? "rounded-2xl border border-line bg-cream/92 px-4 py-2.5 shadow-[0_18px_40px_rgba(0,77,36,0.16)] backdrop-blur-md md:rounded-full md:px-6 md:py-2"
-            : "border-b border-line/70 bg-cream/95 px-4 py-3 md:px-10 md:py-3 lg:px-12"
+        className={`mx-auto flex items-center justify-between gap-4 transition-all duration-300 ${
+          scrolled || open
+            ? "max-w-[1200px] rounded-[28px] border border-line bg-cream/90 px-4 py-2.5 shadow-soft backdrop-blur-md"
+            : "max-w-full rounded-none border-b border-line bg-cream/96 px-4 py-3 shadow-sm md:px-8"
         }`}
       >
         <a
           href={isHome ? "#inicio" : "/#inicio"}
-          className="flex min-w-0 items-center gap-3 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aip-green focus-visible:ring-offset-4 md:min-w-max"
+          className="flex min-w-0 items-center gap-3 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aip-green focus-visible:ring-offset-4"
         >
           <Image
             src="/images/logo-aip.png"
             alt="Logo institucional Aula AIP"
-            width={82}
-            height={82}
+            width={64}
+            height={64}
             priority
-            className="h-11 w-11 object-contain drop-shadow-sm transition-all duration-300 md:h-12 md:w-12"
+            className="aip-logo-breathe size-12 object-contain md:size-14"
           />
           <span className="min-w-0">
-            <span className="block text-lg font-black leading-tight tracking-normal text-aip-greenDark md:text-2xl">
+            <span className="block text-xl font-black leading-tight text-aip-greenDark md:text-3xl">
               Aula AIP
             </span>
-            <span className="block text-[10px] font-extrabold leading-tight text-aip-green md:text-xs">
+            <span className="block truncate text-[11px] font-extrabold leading-tight text-aip-green md:text-sm">
               Aula de Innovación Pedagógica
             </span>
           </span>
         </a>
 
-        <nav aria-label="Secciones principales" className="hidden items-center gap-2 rounded-full border border-line bg-white/75 px-3 py-2 text-sm font-black shadow-card lg:flex">
+        <nav
+          aria-label="Secciones principales"
+          className="hidden items-center gap-1 rounded-full border border-line bg-white/88 p-1.5 text-sm font-black shadow-sm lg:flex"
+        >
           {navItems.map(([label, href]) => (
             <a
               key={href}
               href={isHome ? href : `/${href}`}
               aria-current={activeHref === href ? "page" : undefined}
               onClick={() => setActiveHref(href)}
-              className={`relative rounded-full px-4 py-2 transition-colors duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aip-green ${
+              className={`rounded-full px-4 py-2.5 transition duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aip-green ${
                 activeHref === href
-                  ? "bg-aip-green text-white shadow-sm"
-                  : "text-aip-greenDark hover:bg-aip-yellowSoft hover:text-aip-greenDark"
+                  ? "bg-aip-green text-white shadow-card"
+                  : "text-aip-greenDark hover:bg-aip-greenSoft"
               }`}
             >
               {label}
@@ -121,39 +119,37 @@ export function Header() {
 
         <button
           type="button"
-          className="grid h-12 w-12 place-items-center rounded-lg bg-aip-green text-white shadow-card transition-colors duration-200 hover:bg-aip-greenDark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aip-yellow lg:hidden"
+          className="grid size-11 place-items-center rounded-xl bg-aip-green text-white shadow-card transition hover:bg-aip-greenDark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aip-yellow lg:hidden"
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
         >
-          {open ? <X /> : <Menu />}
+          {open ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
-
-        {open && (
-          <div className="absolute left-0 right-0 top-full mt-2 rounded-2xl border border-line bg-cream p-4 shadow-soft lg:hidden">
-            <nav aria-label="Secciones principales móvil" className="grid gap-1 text-base font-bold">
-              {navItems.map(([label, href]) => (
-                <a
-                  key={href}
-                  href={isHome ? href : `/${href}`}
-                  aria-current={activeHref === href ? "page" : undefined}
-                  className={`rounded-lg px-3 py-3 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aip-green ${
-                    activeHref === href
-                      ? "bg-aip-green text-white"
-                      : "text-ink hover:bg-aip-greenSoft"
-                  }`}
-                  onClick={() => {
-                    setActiveHref(href);
-                    setOpen(false);
-                  }}
-                >
-                  {label}
-                </a>
-              ))}
-            </nav>
-          </div>
-        )}
       </div>
+
+      {open && (
+        <div className="mx-auto mt-2 max-w-[1200px] rounded-3xl border border-line bg-white p-3 shadow-soft lg:hidden">
+          <nav aria-label="Secciones principales móvil" className="grid gap-1 text-base font-extrabold">
+            {navItems.map(([label, href]) => (
+              <a
+                key={href}
+                href={isHome ? href : `/${href}`}
+                aria-current={activeHref === href ? "page" : undefined}
+                className={`rounded-2xl px-4 py-3 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aip-green ${
+                  activeHref === href ? "bg-aip-green text-white" : "text-aip-greenDark hover:bg-aip-greenSoft"
+                }`}
+                onClick={() => {
+                  setActiveHref(href);
+                  setOpen(false);
+                }}
+              >
+                {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

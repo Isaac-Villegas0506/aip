@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Knewave, Nunito } from "next/font/google";
+import { Nunito, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
 const nunito = Nunito({
@@ -9,9 +9,9 @@ const nunito = Nunito({
   display: "swap"
 });
 
-const knewave = Knewave({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: "400",
+  weight: ["600", "700", "800"],
   variable: "--font-display",
   display: "swap"
 });
@@ -29,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${nunito.variable} ${knewave.variable}`}>
+      <body className={`${nunito.variable} ${jakarta.variable}`}>
         {children}
       </body>
     </html>

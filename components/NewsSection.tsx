@@ -1,4 +1,4 @@
-import { ArrowRight, CalendarDays } from "lucide-react";
+import { ArrowRight, Bell, CalendarDays } from "lucide-react";
 
 const news = [
   ["Taller Robótica Educativa", "16 de mayo, 2024"],
@@ -8,29 +8,27 @@ const news = [
 
 export function NewsSection() {
   return (
-    <article id="noticias" className="flex flex-col h-full justify-between rounded-3xl bg-white border border-gray-100 p-6 md:p-8 shadow-sm transition-shadow hover:shadow-md">
-      <div>
-        <h2 className="text-xl font-bold text-aip-greenDark mb-6">Noticias destacadas</h2>
-        <ul className="grid gap-5">
-          {news.map(([title, date]) => (
-            <li key={title} className="flex gap-4 items-start">
-              <div className="mt-1 bg-green-50 p-2 rounded-lg text-aip-green">
-                <CalendarDays className="h-4 w-4" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-800 leading-snug">{title}</h3>
-                <p className="mt-0.5 text-xs font-medium text-gray-500">{date}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <a
-        href="#noticias-detalle"
-        className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-aip-green hover:text-aip-greenDark transition-colors"
-      >
+    <article id="noticias" className="motion-card section-anchor flex h-full flex-col rounded-2xl border border-line bg-white p-6 shadow-card hover:border-aip-green/35 hover:shadow-soft">
+      <h2 className="flex items-center gap-3 text-xl font-black text-aip-greenDark">
+        <Bell className="size-5 text-aip-green" />
+        Noticias y actividades recientes
+      </h2>
+      <ul className="mt-6 grid gap-4">
+        {news.map(([title, date]) => (
+          <li key={title} className="flex items-start gap-4">
+            <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-aip-greenSoft text-aip-green">
+              <CalendarDays className="size-5" />
+            </span>
+            <span>
+              <strong className="block text-sm font-black leading-snug text-ink">{title}</strong>
+              <span className="mt-1 block text-xs font-bold text-muted">{date}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+      <a href="#noticias-detalle" className="group mt-auto inline-flex items-center gap-2 pt-7 text-sm font-black text-aip-greenDark">
         Ver todas las noticias
-        <ArrowRight className="h-4 w-4" />
+        <ArrowRight className="motion-arrow size-4" />
       </a>
     </article>
   );

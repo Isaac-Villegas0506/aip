@@ -1,30 +1,48 @@
-import { ArrowRight, Sparkles, UsersRound } from "lucide-react";
+import { ArrowRight, CirclePlay, Star } from "lucide-react";
 
 export function ProjectSection() {
   return (
-    <article className="flex flex-col h-full justify-between rounded-3xl bg-white border border-gray-100 p-6 md:p-8 shadow-sm transition-shadow hover:shadow-md">
-      <div>
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-bold text-aip-greenDark">Proyecto destacado</h2>
-        </div>
-        
-        <div className="rounded-2xl bg-gray-50 border border-gray-100 p-6 flex flex-col items-center justify-center text-center mb-6">
-          <div className="bg-white p-3 rounded-xl shadow-sm mb-4">
-             <UsersRound className="h-8 w-8 text-aip-green" strokeWidth={2} />
+    <article className="motion-card flex h-full flex-col rounded-2xl border border-line bg-white p-6 shadow-card hover:border-aip-green/35 hover:shadow-soft">
+      <h2 className="flex items-center gap-3 text-xl font-black text-aip-greenDark">
+        <Star className="size-5 text-aip-green" />
+        Proyecto destacado
+      </h2>
+
+      <div className="mt-6 grid flex-1 gap-5 sm:grid-cols-[0.9fr_1.1fr] lg:grid-cols-1 xl:grid-cols-[0.95fr_1.05fr]">
+        <div className="relative min-h-40 overflow-hidden rounded-2xl border border-line bg-aip-yellowSoft">
+          <div className="absolute inset-0 flex items-center justify-center gap-3">
+            {[0, 1, 2].map((item) => (
+              <span key={item} className="h-28 w-16 rounded-xl border-[3px] border-aip-greenDark bg-white p-1.5 shadow-sm">
+                <span className="block h-4 rounded bg-aip-green" />
+                <span className="mt-2 block h-5 rounded bg-aip-greenSoft" />
+                <span className="mt-2 block h-5 rounded bg-aip-yellowSoft" />
+                <span className="mt-2 block h-5 rounded bg-aip-greenSoft" />
+              </span>
+            ))}
           </div>
-          <h3 className="text-base font-bold text-gray-800">App Escolar: Conectando Ideas</h3>
-          <p className="mt-2 text-xs font-medium text-gray-500 leading-relaxed max-w-[200px]">
-            Proyecto colaborativo para mejorar nuestra comunidad educativa.
+          <span className="absolute inset-0 m-auto grid size-16 place-items-center rounded-full border-4 border-white bg-aip-green/82 text-white shadow-soft">
+            <CirclePlay className="size-10" />
+          </span>
+        </div>
+
+        <div>
+          <h3 className="text-lg font-black leading-tight text-aip-greenDark">App Escolar: Conectando Ideas</h3>
+          <p className="mt-3 text-sm font-semibold leading-relaxed text-muted">
+            Aplicación móvil para mejorar la comunicación y organización en nuestra institución.
           </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {["Desarrollo Mobile", "Diseño UI/UX", "Innovación"].map((tag) => (
+              <span key={tag} className="rounded-md border border-aip-yellow bg-aip-yellowSoft px-2.5 py-1 text-[11px] font-black text-aip-greenDark">
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 
-      <a
-        href="#proyectos"
-        className="mt-auto inline-flex items-center gap-2 text-sm font-bold text-aip-green hover:text-aip-greenDark transition-colors"
-      >
+      <a href="#proyectos" className="group mt-6 inline-flex items-center gap-2 text-sm font-black text-aip-greenDark">
         Ver todos los proyectos
-        <ArrowRight className="h-4 w-4" />
+        <ArrowRight className="motion-arrow size-4" />
       </a>
     </article>
   );

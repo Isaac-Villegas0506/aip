@@ -1,45 +1,43 @@
-import { Mail, Globe2, UserRound, ArrowRight } from "lucide-react";
+import { ArrowRight, Globe2, Mail, UserRound } from "lucide-react";
 
 export function TeacherCard() {
   return (
-    <article className="flex flex-col h-full justify-between rounded-3xl bg-white border border-gray-100 p-6 md:p-8 shadow-sm transition-shadow hover:shadow-md">
-      <div>
-        <h2 className="text-xl font-bold text-aip-greenDark mb-6">Docente responsable</h2>
-        
-        <div className="flex items-center gap-4 mb-6">
-          <div className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-green-50 text-aip-green">
-            <UserRound className="h-8 w-8" strokeWidth={2} />
-          </div>
-          <div>
-            <h3 className="text-base font-bold text-gray-800">Prof. Diego Ramos</h3>
-            <p className="text-xs font-medium text-gray-500 mt-1">
-              Apasionado por la tecnología y la educación.
-            </p>
-          </div>
-        </div>
+    <article className="flex h-full flex-col rounded-2xl border border-line bg-white p-6 shadow-card">
+      <h2 className="flex items-center gap-3 text-xl font-black text-aip-greenDark">
+        <UserRound className="size-5 text-aip-green" />
+        Docente responsable
+      </h2>
 
-        <div className="flex flex-col gap-3 text-sm font-medium text-gray-600">
-          <a href="mailto:diego.ramos@colegio.edu.pe" className="flex items-center gap-3 hover:text-aip-green transition-colors">
-            <div className="bg-gray-50 p-2 rounded-lg text-gray-400">
-               <Mail className="h-4 w-4" />
-            </div>
-            <span className="truncate">diego.ramos@colegio.edu.pe</span>
-          </a>
-          <a href="#recursos" className="flex items-center gap-3 hover:text-aip-green transition-colors">
-            <div className="bg-gray-50 p-2 rounded-lg text-gray-400">
-               <Globe2 className="h-4 w-4" />
-            </div>
-            <span>Plataforma AIP</span>
-          </a>
-        </div>
+      <div className="mt-6 flex items-center gap-4">
+        <span className="grid size-20 shrink-0 place-items-center rounded-full bg-aip-greenSoft text-aip-greenDark">
+          <UserRound className="size-10" />
+        </span>
+        <span>
+          <strong className="block text-lg font-black text-ink">JOHN VALENZUELA TORRES</strong>
+          <span className="mt-1 block text-sm font-semibold leading-relaxed text-muted">
+            Responsable del Aula de Innovación Pedagógica.
+          </span>
+        </span>
       </div>
 
-      <a
-        href="#contacto"
-        className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-aip-green hover:text-aip-greenDark transition-colors"
-      >
+      <div className="mt-6 grid gap-3 text-sm font-bold text-muted">
+        <span className="flex min-w-0 items-center gap-3">
+          <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-cream text-muted">
+            <Mail className="size-4" />
+          </span>
+          <span className="truncate">Plataforma informativa Aula AIP</span>
+        </span>
+        <a href="#enlaces-institucionales" className="flex items-center gap-3 hover:text-aip-greenDark">
+          <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-cream text-muted">
+            <Globe2 className="size-4" />
+          </span>
+          Recursos institucionales
+        </a>
+      </div>
+
+      <a href="#contacto" className="group mt-auto inline-flex items-center gap-2 pt-7 text-sm font-black text-aip-greenDark">
         Contactar docente
-        <ArrowRight className="h-4 w-4" />
+        <ArrowRight className="size-4 transition group-hover:translate-x-1" />
       </a>
     </article>
   );
